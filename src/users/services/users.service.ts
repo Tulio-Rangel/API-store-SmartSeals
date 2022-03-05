@@ -1,4 +1,3 @@
-import { Product } from './../../products/entities/product.entity';
 import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 
 import { User } from '../entities/user.entity';
