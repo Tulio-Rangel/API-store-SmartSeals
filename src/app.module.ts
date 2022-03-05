@@ -7,6 +7,7 @@ import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
 
 import { environments } from './environments';
+import config from './config';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { environments } from './environments';
     DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: environments[process.env.NODE_ENV] || '.env',
+      load: [config],
       isGlobal: true,
     }),
   ],
