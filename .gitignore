@@ -35,3 +35,4 @@ insomniaReady.json
 !.vscode/extensions.json
 
 *.env
+/mongo_data
