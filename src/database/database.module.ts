@@ -13,9 +13,9 @@ const API_KEY_PROD = 'Prodkey';
   imports: [
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, password, dbName } = configService.mongo;
+        const { user, password } = configService.mongo;
         return {
-          uri: `mongodb+srv://${user}:${password}@cluster0.ty3yp.mongodb.net/${dbName}?retryWrites=true&w=majority`,
+          uri: `mongodb+srv://${user}:${password}@cluster0.ty3yp.mongodb.net/SmartSeals?retryWrites=true&w=majority`,
         };
       },
       inject: [config.KEY],

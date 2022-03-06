@@ -27,51 +27,32 @@ export class ProductsController {
 
   @ApiOperation({ summary: 'List of all products' })
   @Get()
-  getProducts(
-    @Query('limit') limit = 100,
-    @Query('offset') offset = 0,
-    @Query('brand') brand: string,
-  ) {
-    // return {
-    //   message: `products limit=> ${limit} offset=> ${offset} brand=> ${brand}`,
-    // };
+  findAll() {
     return this.productsService.findAll();
   }
-
-  /*@Get('filter')
-  getProductFilter() {
-    return `yo soy un filter`;
-  }*/
 
   @ApiOperation({ summary: 'Obtain a product by its id' })
   @Get(':productId')
   @HttpCode(HttpStatus.ACCEPTED)
-  getOne(@Param('productId', ParseIntPipe) productId: number) {
-    // response.status(200).send({
-    //   message: `product ${productId}`,
-    // });
+  getOne(@Param('productId') productId: string) {
     return this.productsService.findOne(productId);
   }
 
   @ApiOperation({ summary: 'Create a product' })
   @Post()
   create(@Body() payload: CreateProductDto) {
-    // return {
-    //   message: 'accion de crear',
-    //   payload,
-    // };
     return this.productsService.create(payload);
   }
 
   @ApiOperation({ summary: 'Modify a product by its id' })
   @Put(':id')
   update(@Param('id') id: string, @Body() payload: UpdateProductDto) {
-    return this.productsService.update(+id, payload);
+    return this.productsService.update(id, payload);
   }
 
   @ApiOperation({ summary: 'Delete a product by its id' })
   @Delete(':id')
   delete(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+    return this.productsService.remove(id);
   }
 }
