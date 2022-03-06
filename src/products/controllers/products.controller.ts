@@ -15,6 +15,7 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { Response } from 'express';
 
 import { ParseIntPipe } from '../../common/parse-int.pipe';
+import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
 
 import { ProductsService } from './../services/products.service';
@@ -33,7 +34,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Obtain a product by its id' })
   @Get(':productId')
   @HttpCode(HttpStatus.ACCEPTED)
-  getOne(@Param('productId') productId: string) {
+  getOne(@Param('productId', MongoIdPipe) productId: string) {
     return this.productsService.findOne(productId);
   }
 
@@ -45,13 +46,16 @@ export class ProductsController {
 
   @ApiOperation({ summary: 'Modify a product by its id' })
   @Put(':id')
-  update(@Param('id') id: string, @Body() payload: UpdateProductDto) {
+  update(
+    @Param('id', MongoIdPipe) id: string,
+    @Body() payload: UpdateProductDto,
+  ) {
     return this.productsService.update(id, payload);
   }
 
   @ApiOperation({ summary: 'Delete a product by its id' })
   @Delete(':id')
-  delete(@Param('id') id: string) {
+  delete(@Param('id', MongoIdPipe) id: string) {
     return this.productsService.remove(id);
   }
 }
