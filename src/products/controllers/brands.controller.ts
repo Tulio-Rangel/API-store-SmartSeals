@@ -26,7 +26,7 @@ export class BrandsController {
 
   @ApiOperation({ summary: 'Obtain a brand by its id' })
   @Get(':id')
-  get(@Param('id', ParseIntPipe) id: number) {
+  get(@Param('id') id: string) {
     return this.brandsService.findOne(id);
   }
 
@@ -38,16 +38,13 @@ export class BrandsController {
 
   @ApiOperation({ summary: 'Modify a brand by its id' })
   @Put(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() payload: UpdateBrandDto,
-  ) {
+  update(@Param('id') id: string, @Body() payload: UpdateBrandDto) {
     return this.brandsService.update(id, payload);
   }
 
   @ApiOperation({ summary: 'Delete a brand by its id' })
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.brandsService.remove(+id);
+  remove(@Param('id') id: string) {
+    return this.brandsService.remove(id);
   }
 }
