@@ -26,13 +26,13 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Obtain an user by its id' })
   @Get(':id')
-  get(@Param('id', ParseIntPipe) id: number) {
+  get(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @ApiOperation({ summary: 'List of all orders by user' })
   @Get(':id/orders')
-  getOrders(@Param('id', ParseIntPipe) id: number) {
+  getOrders(@Param('id') id: string) {
     return this.usersService.getOrderByUser(id);
   }
 
@@ -44,16 +44,13 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Modify an user by its id' })
   @Put(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() payload: UpdateUserDto,
-  ) {
+  update(@Param('id') id: string, @Body() payload: UpdateUserDto) {
     return this.usersService.update(id, payload);
   }
 
   @ApiOperation({ summary: 'Delete an user by its id' })
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(+id);
+  remove(@Param('id') id: string) {
+    return this.usersService.remove(id);
   }
 }

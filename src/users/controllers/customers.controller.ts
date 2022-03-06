@@ -26,7 +26,7 @@ export class CustomerController {
 
   @ApiOperation({ summary: 'Obtain a customer by its id' })
   @Get(':id')
-  get(@Param('id', ParseIntPipe) id: number) {
+  get(@Param('id') id: string) {
     return this.customersService.findOne(id);
   }
 
@@ -38,16 +38,13 @@ export class CustomerController {
 
   @ApiOperation({ summary: 'Modify a customer by its id' })
   @Put(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() payload: UpdateCustomerDto,
-  ) {
+  update(@Param('id') id: string, @Body() payload: UpdateCustomerDto) {
     return this.customersService.update(id, payload);
   }
 
   @ApiOperation({ summary: 'Delete a customer by its id' })
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.customersService.remove(+id);
+  remove(@Param('id') id: string) {
+    return this.customersService.remove(id);
   }
 }
