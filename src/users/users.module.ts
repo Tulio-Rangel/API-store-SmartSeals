@@ -1,3 +1,5 @@
+import { OrdersService } from './services/orders.service';
+import { OrdersController } from './controllers/orders.controller';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -29,7 +31,7 @@ import { ProductsModule } from 'src/products/products.module';
       },
     ]),
   ],
-  controllers: [CustomerController, UsersController],
-  providers: [CustomersService, UsersService],
+  controllers: [CustomerController, UsersController, OrdersController],
+  providers: [CustomersService, UsersService, OrdersService],
 })
 export class UsersModule {}
