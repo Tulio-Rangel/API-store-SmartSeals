@@ -13,18 +13,18 @@ Esta es la API de Smart Seals para manejar los pedidos, productos, usuarios, mar
 - Joi
 - Dotenv
 
-## Información Antes de Empezar si se quiere ejecutar en local
+## Información Antes de empezar si se quiere ejecutar en local
 
 #### Se debe tener instalado en el computador lo siguiente:
 
--MongoDB
--Node.js
+- MongoDB
+- Node.js
 
 #### Atención
 
 Se debe crear un archivo **.env** en la raiz del proyecto que contenga las siguentes variables:
 
-- API_KEY=000
+- API_KEY
 - DATA_BASE_NAME
 - DATA_BASE_PORT
 - PORT=3000
@@ -52,8 +52,8 @@ npm run start:dev
 ```
 ## Documentación
 
-La documentación puede ser accedida desde: [Documentación](http://localhost:3000/api-docs)
+La documentación puede ser accedida desde: [Documentación](http://localhost:3000/docs)
 
 ## Acceder a la API desplegada
 
-Para acceder a la API desplegada puede acceder sin necesidad de instalar nada a: [API-desplegada](https://young-caverns-67333.herokuapp.com/docs/)
+Para tener acceso a la API desplegada puede acceder sin necesidad de instalar nada a: [API-desplegada](https://young-caverns-67333.herokuapp.com/docs/)
