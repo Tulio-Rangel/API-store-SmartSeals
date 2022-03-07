@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import * as bcrypt from 'bcrypt';
 
 import { User } from '../entities/user.entity';
 import { Order } from '../entities/order.entity';
@@ -33,8 +34,10 @@ export class UsersService {
     return user;
   }
 
-  create(data: CreateUserDto) {
+  async create(data: CreateUserDto) {
     const newUser = new this.userModel(data);
+    const hashPassword = await bcrypt.hash(newUser.password, 10);
+    newUser.password = hashPassword;
     return newUser.save();
   }
 
