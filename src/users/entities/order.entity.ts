@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-import { User } from './user.entity';
+import { Customer } from './customer.entity';
 import { Product } from 'src/products/entities/product.entity';
 
 @Schema()
@@ -10,7 +10,7 @@ export class Order extends Document {
   date: Date;
 
   @Prop()
-  user: User;
+  customer: Customer;
 
   @Prop({ type: Array })
   products: Product[];
