@@ -34,6 +34,10 @@ export class UsersService {
     return user;
   }
 
+  findByEmail(email: string) {
+    return this.userModel.findOne({ email }).exec();
+  }
+
   async create(data: CreateUserDto) {
     const newUser = new this.userModel(data);
     const hashPassword = await bcrypt.hash(newUser.password, 10);

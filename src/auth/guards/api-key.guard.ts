@@ -28,7 +28,7 @@ export class ApiKeyGuard implements CanActivate {
       return true;
     }
     const request = context.switchToHttp().getRequest<Request>();
-    const authHeader = request.header('Auth');
+    const authHeader = request.header('auth');
     const isAuthorized = authHeader === this.configService.apiKey;
     if (!isAuthorized) {
       throw new UnauthorizedException('You are not authorized');
