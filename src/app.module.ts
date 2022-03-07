@@ -20,7 +20,7 @@ import config from './config';
       load: [config],
       isGlobal: true,
       validationSchema: Joi.object({
-        API_KEY: Joi.number().required(),
+        API_KEY: Joi.string().required(),
         DATA_BASE_NAME: Joi.string().required(),
         DATA_BASE_PORT: Joi.number().required(),
       }),
