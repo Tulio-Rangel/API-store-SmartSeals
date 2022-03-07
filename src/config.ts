@@ -12,5 +12,6 @@ export default registerAs('config', () => {
       password: process.env.PASSWORDMONGO,
     },
     apiKey: process.env.API_KEY,
+    jwtSecret: process.env.JWT_SECRET,
   };
 });
