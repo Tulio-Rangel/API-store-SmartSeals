@@ -27,7 +27,7 @@ Se debe crear un archivo **.env** en la raiz del proyecto que contenga las sigue
 - API_KEY
 - DATA_BASE_NAME
 - DATA_BASE_PORT
-- PORT=3000
+- PORT
 - USERMONGO
 - PASSWORDMONGO
 - JWT_SECRET
