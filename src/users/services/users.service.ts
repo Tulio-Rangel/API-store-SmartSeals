@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 
 import { User } from '../entities/user.entity';
 import { Order } from '../entities/order.entity';
-import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
+import { CreateUserDto, UpdateUserDto, FilterUserDto } from '../dtos/user.dto';
 
 import { ProductsService } from 'src/products/services/products.service';
 
@@ -17,7 +17,11 @@ export class UsersService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) {}
 
-  findAll() {
+  findAll(params?: FilterUserDto) {
+    if (params) {
+      const { limit, offset } = params;
+      return this.userModel.find().skip(offset).limit(limit).exec();
+    }
     return this.userModel.find().exec();
   }
 

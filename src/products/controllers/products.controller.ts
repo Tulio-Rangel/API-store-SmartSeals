@@ -16,7 +16,11 @@ import { Response } from 'express';
 
 import { ParseIntPipe } from '../../common/parse-int.pipe';
 import { MongoIdPipe } from 'src/common/mongo-id.pipe';
-import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
+import {
+  CreateProductDto,
+  UpdateProductDto,
+  FilterProductDto,
+} from '../dtos/products.dtos';
 
 import { ProductsService } from './../services/products.service';
 
@@ -27,8 +31,8 @@ export class ProductsController {
 
   @ApiOperation({ summary: 'List of all products' })
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  findAll(@Query() params: FilterProductDto) {
+    return this.productsService.findAll(params);
   }
 
   @ApiOperation({ summary: 'Obtain a product by its id' })

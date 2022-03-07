@@ -6,6 +6,7 @@ import {
   Body,
   Put,
   Delete,
+  Query,
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -13,7 +14,11 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 
 import { CategoriesService } from '../services/categories.service';
-import { CreateCategoryDto, UpdateCategoryDto } from './../dtos/category.dtos';
+import {
+  CreateCategoryDto,
+  UpdateCategoryDto,
+  FilterCategoryDto,
+} from './../dtos/category.dtos';
 
 @ApiTags('categories')
 @Controller('categories')
@@ -22,8 +27,8 @@ export class CategoriesController {
 
   @ApiOperation({ summary: 'List of all categories' })
   @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  findAll(@Query() params: FilterCategoryDto) {
+    return this.categoriesService.findAll(params);
   }
 
   @ApiOperation({ summary: 'Obtain a category by its is' })

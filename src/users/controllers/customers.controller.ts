@@ -6,6 +6,7 @@ import {
   Body,
   Put,
   Delete,
+  Query,
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -13,7 +14,11 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 
 import { CustomersService } from '../services/customers.service';
-import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customer.dto';
+import {
+  CreateCustomerDto,
+  UpdateCustomerDto,
+  FilterCustomerDto,
+} from '../dtos/customer.dto';
 
 @ApiTags('customers')
 @Controller('customers')
@@ -22,8 +27,8 @@ export class CustomerController {
 
   @ApiOperation({ summary: 'List of all customers' })
   @Get()
-  findAll() {
-    return this.customersService.findAll();
+  findAll(@Query() params: FilterCustomerDto) {
+    return this.customersService.findAll(params);
   }
 
   @ApiOperation({ summary: 'Obtain a customer by its id' })

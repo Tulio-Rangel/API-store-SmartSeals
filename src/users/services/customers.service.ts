@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Customer } from '../entities/customer.entity';
-import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customer.dto';
+import { CreateCustomerDto, UpdateCustomerDto, FilterCustomerDto } from '../dtos/customer.dto';
 
 @Injectable()
 export class CustomersService {
@@ -11,7 +11,11 @@ export class CustomersService {
     @InjectModel(Customer.name) private customerModel: Model<Customer>,
   ) {}
 
-  findAll() {
+  findAll(params?: FilterCustomerDto) {
+    if (params) {
+      const { limit, offset } = params;
+      return this.customerModel.find().skip(offset).limit(limit).exec();
+    }
     return this.customerModel.find().exec();
   }
 

@@ -6,6 +6,7 @@ import {
   Body,
   Put,
   Delete,
+  Query,
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -13,7 +14,11 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 
 import { BrandsService } from '../services/brands.service';
-import { CreateBrandDto, UpdateBrandDto } from '../dtos/brand.dtos';
+import {
+  CreateBrandDto,
+  UpdateBrandDto,
+  FilterBrandDto,
+} from '../dtos/brand.dtos';
 
 @ApiTags('brands')
 @Controller('brands')
@@ -22,8 +27,8 @@ export class BrandsController {
 
   @ApiOperation({ summary: 'List of all brands' })
   @Get()
-  findAll() {
-    return this.brandsService.findAll();
+  findAll(@Query() params: FilterBrandDto) {
+    return this.brandsService.findAll(params);
   }
 
   @ApiOperation({ summary: 'Obtain a brand by its id' })
